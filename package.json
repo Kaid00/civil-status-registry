@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "serverstart": ""
+    "devstart": "DEBUG=civil-registry:* npm run start"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
