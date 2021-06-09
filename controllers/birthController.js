@@ -1,43 +1,17 @@
-const Birth = require('../models/birth');
+const Birth = require('../models/birthModel');
+const APIFeatures = require('../utils/apiFeatures');
 
 // Display list of all Birth Certificates
 exports.getAllBirthCert = async (req, res) => {
   try {
-    // BUILD QUERY
-    // 1) Filtering
-    const queryObj = { ...req.query };
-    const excludedFields = ['page', 'sort', 'limit', 'fields'];
-    excludedFields.forEach((el) => delete queryObj[el]);
-
-    // 2) Advanced Filtering
-    let queryStr = JSON.stringify(queryObj);
-    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => {
-      return `$${match}`;
-    });
-
-    console.log(JSON.parse(queryStr));
-
-    let query = Birth.find(JSON.parse(queryStr));
-
-    // SORTING
-    if (req.query.sort) {
-      const sortBy = req.query.sort.split(',').join(' ');
-      console.log(sortBy);
-      query = query.sort(sortBy);
-    } else {
-      query = query.sort('-drawn_up_on');
-    }
-
-    // FIELD Limiting
-    if (req.query.fields) {
-      const fields = req.query.fields.split(',').join(' ');
-      query = query.select(fields);
-    } else {
-      query = query.select('-__v');
-    }
-
     //  EXECUTE QUERY
-    const birth = await query;
+    const features = new APIFeatures(Birth.find(), req.query)
+      .filter()
+      .sort()
+      .fieldLimiting()
+      .paginate();
+
+    const birth = await features.query;
 
     // SEND RESPONSE
     res.status(200).json({
@@ -120,7 +94,7 @@ exports.updateBirthCert = async (req, res) => {
 
     res.status(201).json({
       status: 'Success',
-      changed: {
+      updated: {
         birth,
       },
     });
