@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const birthController = require('../controllers/birthController');
+const authController = require('../controllers/authController');
 
 router
   .route('/birth')
-  .get(birthController.getAllBirthCert)
+  .get(authController.protect, birthController.getAllBirthCert)
   .post(birthController.createBirthCert);
 
 router
