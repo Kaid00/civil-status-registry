@@ -112,6 +112,8 @@ exports.protect = async (req, res, next) => {
       );
     }
 
+    // Grant access to protected routes
+    req.users = freshUser;
     next();
   } catch (err) {
     res.status(400).json({
