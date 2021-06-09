@@ -4,7 +4,9 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 
+dotenv.config({ path: './config.env' });
 // DB
 const DB = 'mongodb://localhost:27017/civil-registry';
 mongoose
