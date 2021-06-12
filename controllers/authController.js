@@ -16,6 +16,7 @@ exports.signup = async (req, res) => {
       password: req.body.password,
       password_cfrm: req.body.password_cfrm,
       passwordChangedAt: req.body.passwordChangedAt,
+      role: req.body.role,
     });
 
     const token = signToken(newUser._id);
@@ -79,11 +80,8 @@ exports.protect = async (req, res, next) => {
       token = req.headers.authorization.split(' ')[1];
     }
 
-    if (!token) {
-      return res.status(401).json({
-        status: 'failed',
-        message: 'You are not loggeg in! Please log in to get access',
-      });
+    if (token === null) {
+      throw 'Not logged in';
     }
 
     // 2) Verification of the token
@@ -93,32 +91,36 @@ exports.protect = async (req, res, next) => {
     // 3) Check if user still exist
     const freshUser = await User.findById(decoded.id);
     if (!freshUser) {
-      return next(
-        res.status(401).json({
-          status: 'failed',
-          message: 'The user belonging to this token no longer exist',
-        })
-      );
+      throw 'The user belonging to this token no longer exist';
     }
 
     // 4) Check if user changed password after JWT was issued
 
     if (freshUser.changePasswordAfter(decoded.iat)) {
-      return next(
-        res.status(401).json({
-          status: 'error',
-          message: 'User recently changed password! Please log in again',
-        })
-      );
+      throw 'User recently changed password! Please log in again';
     }
 
     // Grant access to protected routes
     req.users = freshUser;
+    console.log(req.users);
     next();
-  } catch (err) {
-    res.status(400).json({
+  } catch (Error) {
+    res.status(401).json({
       status: 'failed',
-      message: err,
+      message: Error,
     });
   }
+};
+
+exports.restrictTo = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.users.role)) {
+      res.status(403).json({
+        status: 'Failed',
+        message: 'You do not have permission to perform this action',
+      });
+    }
+
+    next();
+  };
 };
