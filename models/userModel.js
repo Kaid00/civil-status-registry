@@ -14,6 +14,14 @@ const userSchema = mongoose.Schema({
     lowercase: true,
     validate: [validator.isEmail, 'Please enter a vallid email'],
   },
+  role: {
+    type: String,
+    default: 'registrar',
+    enum: {
+      values: ['admin', 'registrar'],
+      message: '{VALUE} is not supported',
+    },
+  },
   password: {
     type: String,
     required: [true, 'Please provide a password'],
@@ -31,7 +39,7 @@ const userSchema = mongoose.Schema({
     },
   },
 
-  passwordChangedAt: Date,
+  passwordChangedAt: { type: Date, default: Date.now() },
 });
 
 userSchema.pre('save', async function (next) {
