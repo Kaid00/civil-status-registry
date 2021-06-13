@@ -6,6 +6,7 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
 
 dotenv.config({ path: './config.env' });
 // DB
@@ -29,20 +30,29 @@ const birthRouter = require('./routes/birth');
 
 const app = express();
 // 1) Global middleware
+// Set Security HTTP Headers
+app.use(helmet());
+
+// Limit request from same API
 const limiter = rateLimit({
   max: 1000,
   windowMs: 60 * 60 * 1000,
   message: 'Too many request from this IP, please try again in an hour!',
 });
 app.use('/', limiter);
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
+
+// Body parser, reading data from body into req.body
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// Serving static files
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
