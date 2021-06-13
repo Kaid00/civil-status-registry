@@ -9,6 +9,7 @@ const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
+const hpp = require('hpp');
 
 // Environment
 dotenv.config({ path: './config.env' });
@@ -62,6 +63,13 @@ app.use(xss());
 
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// Prevent parameter pollution
+app.use(
+  hpp({
+    whitelist: ['born_on', 'surname', 'givenname'],
+  })
+);
 
 // Serving static files
 app.use(express.static(path.join(__dirname, 'public')));
