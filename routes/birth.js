@@ -6,12 +6,16 @@ const authController = require('../controllers/authController');
 router
   .route('/birth')
   .get(authController.protect, birthController.getAllBirthCert)
-  .post(birthController.createBirthCert);
+  .post(authController.protect, birthController.createBirthCert);
 
 router
   .route('/birth/:id')
-  .get(birthController.getBirthCert)
-  .patch(birthController.updateBirthCert)
-  .delete(birthController.deleteBirthCert);
+  .get(authController.protect, birthController.getBirthCert)
+  .patch(authController.protect, birthController.updateBirthCert)
+  .delete(
+    authController.protect,
+    authController.restrictTo('admin'),
+    birthController.deleteBirthCert
+  );
 
 module.exports = router;
