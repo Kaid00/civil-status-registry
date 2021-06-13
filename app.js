@@ -7,9 +7,13 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
+const mongoSanitize = require('express-mongo-sanitize');
+const xss = require('xss-clean');
 
+// Environment
 dotenv.config({ path: './config.env' });
-// DB
+
+// DB config
 const DB = 'mongodb://localhost:27017/civil-registry';
 mongoose
   .connect(DB, {
@@ -49,12 +53,20 @@ app.use(logger('dev'));
 
 // Body parser, reading data from body into req.body
 app.use(express.json());
+
+// Data sanitization against NoSQL query injection
+app.use(mongoSanitize());
+
+// Data sanitization against XSS
+app.use(xss());
+
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Serving static files
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/certificates', marriageRouter, birthRouter);
