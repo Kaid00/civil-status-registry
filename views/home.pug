@@ -3,7 +3,7 @@ head
   meta(charset='UTF-8')
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
   link(rel='stylesheet' href='styles/tailwind.css')
-  title Home
+  title=title
   link(href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap' rel='stylesheet')
   // Favicon
   link(rel='icon' href='images/Favicon.png' type='image/png')
@@ -14,7 +14,7 @@ head
       .flex.items-center.justify-between.h-8.px-6.mx-auto
         .relative.flex.items-center.mt-.mr-4.space-x-6
           .flex.text-white.flex-shrink-0
-            a.flex.p-2(href='')
+            a.flex.p-2(href='/')
               .flex.py-3.px-2.items-center
                 p.text-2xl.text-green-500.font-semibold.border-r-2.pr-1.mr-1 CRS
                 p
@@ -27,45 +27,43 @@ head
             span.z-10.h-full.leading-snug.font-normal.text-center.text-gray-400.absolute.bg-transparent.rounded.text-base.items-center.justify-center.w-8.right-0.pr-3.py-3
               svg.h-5.w-5.-mt-1(xmlns='http://www.w3.org/2000/svg' fill='none' viewbox='0 0 24 24' stroke='currentColor')
               path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z')
-        ul.flex.items-center.flex-shrink-0.space-x-6
-          // Notifications menu
-          li.relative
-            button.p-2.bg-white.text-green-400.align-middle.rounded-full(class='hover:text-white hover:bg-green-400 focus:outline-none' @click='toggleNotificationsMenu' @keydown.escape='closeNotificationsMenu' aria-label='Notifications' aria-haspopup='true')
-              .flex.items-cemter
-                svg.h-6.w-6(xmlns='http://www.w3.org/2000/svg' fill='none' viewbox='0 0 24 24' stroke='currentColor')
-                  path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9')
-              // Notification badge
-              span.absolute.top-0.right-0.inline-block.w-3.h-3.transform.translate-x-1.-translate-y-1.bg-red-600.border-2.border-white.rounded-full(aria-hidden='true' class='dark:border-gray-800')
-            template(x-if='isNotificationsMenuOpen')
-              ul.absolute.right-0.w-56.p-2.mt-2.space-y-2.text-gray-600.bg-green-400.border.border-green-500.rounded-md.shadow-md(x-transition:leave='transition ease-in duration-150' x-transition:leave-start='opacity-100' x-transition:leave-end='opacity-0' @click.away='closeNotificationsMenu' @keydown.escape='closeNotificationsMenu')
-                li.flex
-                  a.text-white.inline-flex.items-center.justify-between.w-full.px-2.py-1.text-sm.font-semibold.transition-colors.duration-150.rounded-md(class='hover:bg-gray-100 hover:text-gray-800' href='#')
-                    span Messages
-                    span.inline-flex.items-center.justify-center.px-2.py-1.text-xs.font-bold.leading-none.text-red-600.bg-red-100.rounded-full(class='dark:text-red-100 dark:bg-red-600')
-                      | 13
-          // Profile menu
-          li.relative
-            button.p-2.bg-green-500.text-green-100.align-middle.rounded-xl.w-20.items-center(class='hover:text-green-200 hover:bg-green-600 focus:outline-none' @click='toggleProfileMenu' @keydown.escape='closeProfileMenu' aria-label='Account' aria-haspopup='true')
-              .font-semibold
-                a(href='/login') Login
+        if user
+          ul.flex.items-center.flex-shrink-0.space-x-10
+            // Notifications menu
+            // On login
+            li.relative
+                .p-2.text-white.align-middle.w-20.items-center.text-sm.pr-16(class='hover:text-green-400'  aria-label='Account' aria-haspopup='true')
+                  .font-semibold
+                    a(href='/login') DASHBOARD 
+            li.relative
+              button.p-2.bg-white.text-green-400.align-middle.rounded-full(class='hover:text-white hover:bg-green-400 focus:outline-none' @click='toggleNotificationsMenu' @keydown.escape='closeNotificationsMenu' aria-label='Notifications' aria-haspopup='true')
+                .flex.items-cemter
+                  svg.h-6.w-6(xmlns='http://www.w3.org/2000/svg' fill='none' viewbox='0 0 24 24' stroke='currentColor')
+                    path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9')
+                // Notification badge
+                span.absolute.top-0.right-0.inline-block.w-3.h-3.transform.translate-x-1.-translate-y-1.bg-red-600.border-2.border-white.rounded-full(aria-hidden='true' class='dark:border-gray-800')
+              template(x-if='isNotificationsMenuOpen')
+                ul.absolute.right-0.w-56.p-2.mt-2.space-y-2.text-gray-600.bg-green-400.border.border-green-500.rounded-md.shadow-md(x-transition:leave='transition ease-in duration-150' x-transition:leave-start='opacity-100' x-transition:leave-end='opacity-0' @click.away='closeNotificationsMenu' @keydown.escape='closeNotificationsMenu')
+                  li.flex
+                    a.text-white.inline-flex.items-center.justify-between.w-full.px-2.py-1.text-sm.font-semibold.transition-colors.duration-150.rounded-md(class='hover:bg-gray-100 hover:text-gray-800' href='#')
+                      span Messages
+                      span.inline-flex.items-center.justify-center.px-2.py-1.text-xs.font-bold.leading-none.text-red-600.bg-red-100.rounded-full(class='dark:text-red-100 dark:bg-red-600')
+                        | 13
+            // Profile menu
+            
+            li.relative
+              button.p-2.bg-green-500.text-white.align-middle.rounded-xl.w-20.items-center(class='hover:text-white hover:bg-green-600 focus:outline-none' @click='toggleProfileMenu' @keydown.escape='closeProfileMenu' aria-label='Account' aria-haspopup='true')
+                .font-semibold
+                  a(href='/login') Log Out
+        else 
+          ul.flex.items-center.flex-shrink-0.space-x-10
+            li.relative
+              button.p-2.bg-green-500.text-white.align-middle.rounded-xl.w-20.items-center(class='hover:text-white hover:bg-green-600 focus:outline-none' @click='toggleProfileMenu' @keydown.escape='closeProfileMenu' aria-label='Account' aria-haspopup='true')
+                .font-semibold
+                  a(href='/login') Login
+          
 
 
     // HERO -------------------------------------------
     block content
-    .flex.h-screen.p-6.px-10
-      // left
-      .pt-32(class='w-1/2')
-        .w-full.text-gray-200.space-y-4
-          h1.font-semibold.text-green-500.tracking-wide(class='md:text-6xl 2xl:text-7xl') Welcome to the CRS
-          p.text-2xl The Civil Status Registry from Registring Birth and Marriage Certificates
-          p.text-xl.font-light
-            | Created by 
-            span.text-green-500 Azamah Junior
-            |  , 
-            span.italic BSC Computer Science
-        .flex.mt-16.items-center.ml-40
-          button.px-6.py-3.bg-green-500.rounded-xl.text-lg.text-green-200.font-semibold.shadow-lg(class='hover:text-green-100 hover:bg-green-600')
-            | Get Started
-      // right
-      .flex(class='w-1/2')
-        img.w-full.items-center(src='images/undraw_version_control_re_mg66.svg' alt='coding')
+      include _hero
