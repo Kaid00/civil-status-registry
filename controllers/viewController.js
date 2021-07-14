@@ -1,9 +1,13 @@
 
 
 exports.dashboard =  (req, res) => {
+ 
+
     res.status(200).render('dashboard', {
-      title: 'Dashboard'
+      title: 'Dashboard',
+      
     })
+
 }
 
 exports.birth =  (req, res) => {
@@ -25,11 +29,9 @@ exports.upload = (req, res) => {
   }
 
 exports.home = (req, res) => {
-    res.status(200).render('home', {
-        title: 'CRS',
-        user: 'Azamah Jr'
-    });
-
+  res.status(200).render('home', {
+          title: 'CRS' 
+      });
 }
 
 exports.login = (req, res) => {
