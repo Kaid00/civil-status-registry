@@ -79,6 +79,7 @@ exports.login = async (req, res) => {
   }
 };
 
+// Protected Routes
 exports.protect = async (req, res, next) => {
   try {
     let token;
@@ -88,10 +89,12 @@ exports.protect = async (req, res, next) => {
       req.headers.authorization.startsWith('Bearer')
     ) {
       token = req.headers.authorization.split(' ')[1];
+    } else if (req.cookies.jwt) {
+      token = req.cookies.jwt;
     }
 
     if (token === null) {
-      throw 'Not logged in';
+      throw 'You are not logged in! Please login to gain access';
     }
 
     // 2) Verification of the token
