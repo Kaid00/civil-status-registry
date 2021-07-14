@@ -11,10 +11,10 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 
-// Environment
+// ENVIRONMENT
 dotenv.config({ path: './config.env' });
 
-// DB config
+// DB CONFIG
 const DB = 'mongodb://localhost:27017/civil-registry';
 mongoose
   .connect(DB, {
@@ -27,14 +27,28 @@ mongoose
     console.log('Database connected');
   });
 
-// Routes
+// ROUTERS
+const viewRouter = require('./routes/viewRoutes')
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const marriageRouter = require('./routes/marriage');
-const birthRouter = require('./routes/birth');
+const usersRouter = require('./routes/usersRoutes');
+const marriageRouter = require('./routes/marriageRoutes');
+const birthRouter = require('./routes/birthRoutes');
+
 
 const app = express();
+
 // 1) Global middleware
+
+// CSP 
+app.use((req, res, next) => {
+  res.setHeader(
+    'Content-Security-Policy-Report-Only',
+    "default-src 'self' http://127.0.0.1:3000; font-src 'self' https:; img-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; connect-src http://127.0.0.1:3000;"
+  )
+  next();
+})
+
+
 // Set Security HTTP Headers
 app.use(helmet());
 
@@ -46,7 +60,7 @@ const limiter = rateLimit({
 });
 app.use('/', limiter);
 
-// view engine setup
+// VIEW ENGINE SETUP
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
@@ -64,6 +78,7 @@ app.use(xss());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+
 // Prevent parameter pollution
 app.use(
   hpp({
@@ -74,10 +89,14 @@ app.use(
 // Serving static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Routes
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/certificates', marriageRouter, birthRouter);
+
+// ROUTES
+app.use('/', viewRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/certificates', marriageRouter, birthRouter);
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
