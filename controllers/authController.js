@@ -94,12 +94,12 @@ exports.protect = async (req, res, next) => {
     }
 
     if (token === null) {
-      throw 'You are not logged in! Please login to gain access';
+      Error =  'You are not logged in! Please login to gain access';
     }
 
     // 2) Verification of the token
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-    console.log(decoded);
+    // console.log(decoded);
 
     // 3) Check if user still exist
     const freshUser = await User.findById(decoded.id);
@@ -117,12 +117,47 @@ exports.protect = async (req, res, next) => {
 
     next();
   } catch (Error) {
-    res.status(401).json({
-      status: 'failed',
-      message: Error,
-    });
+     
+      res.status(401).json({
+        status: 'failed',
+        message: Error,
+      });
+  
+   
   }
 };
+
+exports.isLoggedIn = async (req, res, next) => {
+  
+    // 1) Check if token is there
+  if (req.cookies.jwt) {
+      // 2) Verification of the token
+      const decoded = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET);
+      // console.log(decoded);
+
+      // 3) Check if user still exist in the DB
+      const currentUser = await User.findById(decoded.id);
+      if (!currentUser) {
+        return next();
+      }
+
+      // 4) Check if user changed password after JWT was issued
+      if (currentUser.changePasswordAfter(decoded.iat)) {
+        return next();
+      }
+
+      // There is a logged in user
+      // Passing the user using the res.locals grants access to the user in all PUG templates 
+      res.locals.user = currentUser;
+      
+
+      return next();
+  }
+
+  return next()
+};
+
+
 
 exports.restrictTo = (...roles) => {
   return (req, res, next) => {
