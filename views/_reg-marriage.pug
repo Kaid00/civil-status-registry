@@ -1,0 +1,120 @@
+.grid.mb-4.pb-10.px-8.mx-4.rounded-3xl.bg-gray-100.border-4.border-green-400.h-screen.overflow-y-auto.items-center
+  .grid.grid-cols-12.gap-6
+    .grid.grid-cols-12.col-span-12.gap-6(class='xxl:col-span-9')
+      .col-span-12.mt-8
+        .col-span-4.grid.w-full.justify-center.gap-6.mt-5
+          .w-full.p-10.bg-white.rounded-xl.z-10.shadow-lg(x-data="{ step: 'step1' }" class='sm:max-w-lg')
+            .text-center.pb-8
+              h2.mt-5.text-3xl.font-bold.text-gray-900
+                | Marriage Registry
+            // Steps ------==================================
+            .flex.w-full.p-2.justify-center
+              .flex.flex-rows.justify-between.space-x-20.text-sm
+                .flex.space-x-2.w-full.items-center
+                  .flex.bg-green-400.rounded-full.p-1.w-7.h-7.justify-center.items-center
+                    p.text-gray-100.text-sm.font-semibold 1
+                  p Couples 
+                .flex.space-x-2.w-full.items-center
+                  .flex.border-2.border-green-400.rounded-full.p-1.w-7.h-7.justify-center.items-center(:class="{' bg-green-400 ' : step === 'step2'}")
+                    p.text-gray-800.text-sm.font-semibold 2
+                  p Parents 
+                .flex.space-x-2.w-full.items-center
+                  .flex.border-2.border-green-400.rounded-full.p-1.w-7.h-7.justify-center.items-center
+                    p.text-gray-800.text-sm.font-semibold 3
+                  p Print 
+            // GROOM DETAILS ========================
+            div
+              // COUPLE FORM ===================================
+              form.mt-8.space-y-3.space-y-8(action='#' method='POST')
+                div
+                  // GROOM DETAILS ===================================
+                  label.text-sm.font-semibold.text-gray-500
+                    | Groom
+                    | details
+                  hr
+                  .grid.grid-cols-2.space-y-3.gap-4.text-gray-800.my-4.justify-center
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | Given name
+                        input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text')
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | Surname
+                        input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text')
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | ID Number
+                        input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='number')
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | Place of Birth
+                        input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text')
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | Date of Birth
+                        input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='date')
+                // BRIDE DETAILS ===================================
+                div
+                  label.text-sm.font-semibold.text-gray-500
+                    | Bride
+                    | details
+                  hr
+                  .grid.grid-cols-2.space-y-3.gap-4.text-gray-800.my-4
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | Given name
+                        input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text')
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | Surname
+                        input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text')
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | ID Number
+                        input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='number')
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | Place of Birth
+                        input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text')
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | Date of Birth
+                        input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='date')
+                .flex.justify-center.p-6
+                  #prev0.my-5.w-32.flex.justify-center.bg-green-500.text-gray-100.p-4.rounded-2xl.tracking-wide.font-semibold.shadow-lg.cursor-pointer.transition.ease-in.duration-300(@click=' isOpen = !isOpen' type='submit' class='focus:outline-none focus:shadow-outline hover:bg-green-600')
+                    | Next
+              // PARENT FORM ===================================
+              form.mt-8.space-y-8(action='#' method='POST')
+                div
+                  label.text-sm.font-semibold.text-gray-500
+                    | Grooms Parents
+                    | details
+                  hr
+                .grid.grid-cols-2.space-y-3.gap-4.text-gray-800
+                  .grid.items-center.col-span-2
+                    label(for='')
+                      | Groom fathers name
+                      input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text')
+                  .grid.items-center.col-span-2
+                    label(for='')
+                      | Groom mothers name
+                      input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text')
+                div
+                  label.text-sm.font-semibold.text-gray-500
+                    | Brides Parents
+                    | details
+                  hr
+                .grid.grid-cols-2.space-y-3.gap-4.text-gray-800
+                  .grid.items-center.col-span-2
+                    label(for='')
+                      | Bride fathers name
+                      input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text')
+                  .grid.items-center.col-span-2
+                    label(for='')
+                      | Bride mothers Name
+                      input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text')
+                .flex.justify-between.p-6
+                  #prev0.my-5.w-32.flex.justify-center.bg-green-500.text-gray-100.p-4.rounded-2xl.tracking-wide.font-semibold.shadow-lg.cursor-pointer.transition.ease-in.duration-300(type='submit' @click=' isOpen = !isOpen' class='focus:outline-none focus:shadow-outline hover:bg-green-600')
+                    | Previous
+                  #next1.my-5.w-32.flex.justify-center.bg-green-500.text-gray-100.p-4.rounded-2xl.tracking-wide.font-semibold.shadow-lg.cursor-pointer.transition.ease-in.duration-300(@click=' openPrint = !openPrint' type='submit' class='focus:outline-none focus:shadow-outline hover:bg-green-600')
+                    | Submit

@@ -1,0 +1,159 @@
+.grid.mb-4.pb-10.px-8.mx-4.rounded-3xl.bg-gray-100.border-4.border-green-400.h-screen.overflow-y-auto.items-center
+  .grid.grid-cols-12.gap-6
+    .grid.grid-cols-12.col-span-12.gap-6(class='xxl:col-span-9')
+      .col-span-12.mt-8
+        .col-span-4.grid.w-full.justify-center.gap-6.mt-5
+          .w-full.p-10.bg-white.rounded-xl.z-10.shadow-lg(class='sm:max-w-lg')
+            .text-center.pb-8
+              h2.mt-5.text-3xl.font-bold.text-gray-900
+                | Birth Registry
+            // Steps ------==================================
+            .flex.w-full.p-2.justify-center
+              .flex.flex-rows.justify-between.space-x-20.text-sm
+                .flex.space-x-2.w-full.items-center
+                  .flex.bg-green-400.rounded-full.p-1.w-7.h-7.justify-center.items-center
+                    p.text-gray-100.text-sm.font-semibold 1
+                  p Child 
+                .flex.space-x-2.w-full.items-center
+                  .flex.border-2.border-green-400.rounded-full.p-1.w-7.h-7.justify-center.items-center
+                    p.text-gray-800.text-sm.font-semibold 2
+                  p Parents 
+                .flex.space-x-2.w-full.items-center
+                  .flex.border-2.border-green-400.rounded-full.p-1.w-7.h-7.justify-center.items-center
+                    p.text-gray-800.text-sm.font-semibold 3
+                  p Print 
+            // CHILD DETAILS ========================
+            div
+              form.mt-8.space-y-3(action='' method='POST')
+                .grid.grid-cols-2.space-y-3.gap-4.text-gray-800
+                  .flex.items-center.justify-center
+                    label(for='')
+                      | Givenname
+                      input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text')
+                  .flex.items-center.justify-center
+                    label(for='')
+                      | Surname
+                      input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text')
+                  .flex.items-center.justify-center
+                    label(for='')
+                      | Born At
+                      input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text')
+                  .flex.items-center.justify-center
+                    label(for='')
+                      | Born On
+                      input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='date')
+                .flex.justify-between.p-6
+                  .my-5.w-32.flex.justify-center.bg-green-500.text-gray-100.p-4.rounded-2xl.tracking-wide.font-semibold.shadow-lg.cursor-pointer.transition.ease-in.duration-300(type='submit' class='focus:outline-none focus:shadow-outline hover:bg-green-600')
+                    | Previous
+                  #next0.my-5.w-32.flex.justify-center.bg-green-500.text-gray-100.p-4.rounded-2xl.tracking-wide.font-semibold.shadow-lg.cursor-pointer.transition.ease-in.duration-300(@click=' isOpen = !isOpen' class='focus:outline-none focus:shadow-outline hover:bg-green-600')
+                    | Next
+              // PARENT DETAILS ===================================
+              form.mt-8.space-y-3.space-y-8(action='#' method='POST')
+                div
+                  label.text-sm.font-semibold.text-gray-500
+                    | Father
+                    | details
+                  hr
+                  .grid.grid-cols-2.space-y-3.gap-4.text-gray-800.my-4.justify-center
+                    .grid.items-center.col-span-2
+                      label(for='')
+                        | Name
+                        input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text')
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | ID Number
+                        input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='number')
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | Nationality
+                        input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text')
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | Residence
+                        input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text')
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | Born At
+                        input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text')
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | Born On
+                        input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='date')
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | Occupation
+                        input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text')
+                div
+                  label.text-sm.font-semibold.text-gray-500
+                    | Mother
+                    | details
+                  hr
+                  .grid.grid-cols-2.space-y-3.gap-4.text-gray-800.my-4
+                    .grid.items-center.col-span-2
+                      label(for='')
+                        | Name
+                        input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text')
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | ID Number
+                        input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='number')
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | Nationality
+                        input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text')
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | Residence
+                        input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text')
+                    .flex.items-center.justify-center.w-full
+                      label(for='')
+                        | Born At
+                        input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text')
+                    .flex.items-center.justify-center.w-full
+                      label(for='')
+                        | Born On
+                        input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='date')
+                    .flex.items-center.justify-center.w-full
+                      label(for='')
+                        | Occupation
+                        input.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text')
+                .flex.justify-between.p-6
+                  #prev0.my-5.w-32.flex.justify-center.bg-green-500.text-gray-100.p-4.rounded-2xl.tracking-wide.font-semibold.shadow-lg.cursor-pointer.transition.ease-in.duration-300(@click=' isOpen = !isOpen' type='submit' class='focus:outline-none focus:shadow-outline hover:bg-green-600')
+                    | Previous
+                  #next1.my-5.w-32.flex.justify-center.bg-green-500.text-gray-100.p-4.rounded-2xl.tracking-wide.font-semibold.shadow-lg.cursor-pointer.transition.ease-in.duration-300(type='submit' class='focus:outline-none focus:shadow-outline hover:bg-green-600')
+                    | Submit
+              form.mt-8.space-y-3(action='#' method='POST')
+                .grid.grid-cols-2.space-y-3.gap-4.text-gray-800
+                  .flex.items-center.justify-center.w-full
+                    label(for='')
+                      | Name
+                      input.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text')
+                  .flex.items-center.justify-center.w-full
+                    label(for='')
+                      | ID Number
+                      input.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='number')
+                  .flex.items-center.justify-center.w-full
+                    label(for='')
+                      | Nationality
+                      input.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text')
+                  .flex.items-center.justify-center.w-full
+                    label(for='')
+                      | Residence
+                      input.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text')
+                  .flex.items-center.justify-center.w-full
+                    label(for='')
+                      | Born At
+                      input.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text')
+                  .flex.items-center.justify-center.w-full
+                    label(for='')
+                      | Born On
+                      input.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='date')
+                  .flex.items-center.justify-center.w-full
+                    label(for='')
+                      | Occupation
+                      input.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text')
+                .flex.justify-between.p-6
+                  #prev0.my-5.w-32.flex.justify-center.bg-green-500.text-gray-100.p-4.rounded-2xl.tracking-wide.font-semibold.shadow-lg.cursor-pointer.transition.ease-in.duration-300(type='submit' class='focus:outline-none focus:shadow-outline hover:bg-green-600')
+                    | Previous
+                  #next1.my-5.w-32.flex.justify-center.bg-green-500.text-gray-100.p-4.rounded-2xl.tracking-wide.font-semibold.shadow-lg.cursor-pointer.transition.ease-in.duration-300(type='submit' class='focus:outline-none focus:shadow-outline hover:bg-green-600')
+                    | Next

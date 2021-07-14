@@ -1,0 +1,32 @@
+
+div.grid.mb-4.pb-10.px-8.mx-4.rounded-3xl.bg-gray-100.border-4.border-green-400.h-full(class='2xl:h-screen 2xl:items-center')
+  .grid.grid-cols-12.gap-6
+    .grid.grid-cols-12.col-span-12.gap-6(class='xxl:col-span-9')
+      .col-span-12.mt-8
+        .col-span-3.grid.justify-center.gap-6.mt-5
+          .w-full.p-10.bg-white.rounded-xl.z-10.shadow-lg(class='sm:max-w-lg')
+            .text-center
+              h2.mt-5.text-3xl.font-bold.text-gray-900
+                | Upload CSV File
+              p.mt-2.text-sm.text-gray-400 Birth Registries
+            form.mt-8.space-y-3(action='#' method='POST')
+              .grid.grid-cols-1.space-y-2
+                label.text-sm.font-bold.text-gray-500.tracking-wide Attach Document
+                .flex.items-center.justify-center.w-full
+                  label.flex.flex-col.rounded-lg.border-4.border-dashed.w-full.h-60.p-10.group.text-center
+                    .h-full.w-full.text-center.flex.flex-col.items-center.justify-center.items-center
+                      .flex.flex-auto.max-h-48.mx-auto.-mt-10(class='w-2/5')
+                        img.has-mask.h-36.object-center(src='images/upload.jpeg' alt='freepik image')
+                      p.pointer-none.text-gray-500
+                        span.text-m Drag and drop
+                        |                                                                              files here 
+                        br
+                        |  or 
+                        span.text-green-600(id='' class='hover:underline') select a file
+                        |  from your computer
+                    input.hidden(type='file')
+              p.text-sm.text-gray-300
+                span File type: CSV
+              div
+                button.my-5.w-full.flex.justify-center.bg-green-500.text-gray-100.p-4.rounded-full.tracking-wide.font-semibold.shadow-lg.cursor-pointer.transition.ease-in.duration-300(type='submit' class='focus:outline-none focus:shadow-outline hover:bg-green-600')
+                  | Upload
