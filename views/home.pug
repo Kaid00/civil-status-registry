@@ -2,11 +2,11 @@ doctype html
 head
   meta(charset='UTF-8')
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
-  link(rel='stylesheet' href='stylesheets/tailwind.css')
+  link(rel='stylesheet' href='styles/tailwind.css')
   title Home
   link(href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap' rel='stylesheet')
   // Favicon
-  link(rel='icon' href='./assets/img/Favicon.png' type='image/png')
+  link(rel='icon' href='images/Favicon.png' type='image/png')
 .flex.h-screen.bg-gray-800
   .flex.flex-col.flex-1.w-full
     // Header ===========================
@@ -47,8 +47,11 @@ head
           li.relative
             button.p-2.bg-green-500.text-green-100.align-middle.rounded-xl.w-20.items-center(class='hover:text-green-200 hover:bg-green-600 focus:outline-none' @click='toggleProfileMenu' @keydown.escape='closeProfileMenu' aria-label='Account' aria-haspopup='true')
               .font-semibold
-                a(href='') Login
+                a(href='/login') Login
+
+
     // HERO -------------------------------------------
+    block content
     .flex.h-screen.p-6.px-10
       // left
       .pt-32(class='w-1/2')
@@ -66,33 +69,3 @@ head
       // right
       .flex(class='w-1/2')
         img.w-full.items-center(src='images/undraw_version_control_re_mg66.svg' alt='coding')
-script.
-  function data() {
-  return {
-  isSideMenuOpen: false,
-  toggleSideMenu() {
-  this.isSideMenuOpen = !this.isSideMenuOpen
-  },
-  closeSideMenu() {
-  this.isSideMenuOpen = false
-  },
-  isNotificationsMenuOpen: false,
-  toggleNotificationsMenu() {
-  this.isNotificationsMenuOpen = !this.isNotificationsMenuOpen
-  },
-  closeNotificationsMenu() {
-  this.isNotificationsMenuOpen = false
-  },
-  isProfileMenuOpen: false,
-  toggleProfileMenu() {
-  this.isProfileMenuOpen = !this.isProfileMenuOpen
-  },
-  closeProfileMenu() {
-  this.isProfileMenuOpen = false
-  },
-  isPagesMenuOpen: false,
-  togglePagesMenu() {
-  this.isPagesMenuOpen = !this.isPagesMenuOpen
-  },
-  }
-  }
