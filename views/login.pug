@@ -1,0 +1,33 @@
+extends home 
+block content
+  // HERO -------------------------------------------
+  .flex.h-screen.p-6.px-10
+      // left
+      .pt-64(class='w-1/2')
+        .w-full.text-gray-200.space-y-4
+          h1.font-semibold.text-green-500.tracking-wide(class='md:text-6xl 2xl:text-7xl') Log in to the CRS
+          p.text-2xl Gain access to the CRS by login with your Registrar email and password
+          p.text-xl.font-light
+            | Created by 
+            span.text-green-500 Azamah Junior
+            |  , 
+            span.italic BSC Computer Science
+      // right
+      .flex.flex-col.justify-center(class='w-1/2')
+        form.form.p-10.px-20.flex.flex-col.justify-center.mt-8.space-y-3.bg-green-600.w-full.rounded-2xl.shadow-lg(action='' method='POST')
+          .space-y-4.text-gray-700
+            div
+              label.text-xl(for='')
+                | Email
+                input#email.col-span-2.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-3(class='focus:outline-none focus:ring focus:ring-green-700' type='email' required='')
+            div
+              label.text-xl(for='')
+                | Password
+                input#password.col-span-2.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-3(class='focus:outline-none focus:ring focus:ring-green-700' type='password' required='')
+          button.flex.justify-center.p-6
+            #next0.my-5.w-32.flex.justify-center.bg-green-500.text-gray-100.p-4.rounded-2xl.tracking-wide.font-semibold.shadow-xl.cursor-pointer.transition.ease-in.duration-300.text-green-200( class='focus:outline-none focus:shadow-outline hover:bg-green-700 hover:text-green-100')
+              | Login
+          .flex.justify-center.space-x-4
+            a.text-gray-700.text-lg(href='' class='hover:text-gray-900') Forgot your password?
+            a.text-gray-700.text-lg(href='' class='hover:text-gray-900') Sign Up
+
