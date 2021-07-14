@@ -1,16 +1,19 @@
 const express = require('express');
 const viewController = require('../controllers/viewController')
+const authController = require('../controllers/authController')
 
 const router = express.Router();
 
-router.get('/', viewController.home);
-router.get('/dashboard', viewController.dashboard)
+router.use(authController.isLoggedIn)
 
-router.get('/birth', viewController.birth)
+router.get('/',authController.isLoggedIn, viewController.home);
+router.get('/dashboard',authController.protect, viewController.dashboard)
 
-router.get('/marriage', viewController.marriage)
+router.get('/birth',authController.protect, viewController.birth)
 
-router.get('/upload', viewController.upload)
+router.get('/marriage',authController.protect, viewController.marriage)
+
+router.get('/upload',authController.protect, viewController.upload)
 router.get('/login', viewController.login)
 
 
