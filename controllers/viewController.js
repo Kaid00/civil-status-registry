@@ -37,7 +37,6 @@ exports.home = (req, res) => {
 exports.login = (req, res) => {
     res.status(200).render('login', {
         title: 'Login',
-        user: 'Azamah Jr'
     });
 
 }
