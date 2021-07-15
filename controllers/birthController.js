@@ -21,6 +21,8 @@ exports.getAllBirthCert = async (req, res) => {
         birth,
       },
     });
+
+    res.locals.birth = birth;
   } catch (err) {
     res.status(400).json({
       status: 'failed',
