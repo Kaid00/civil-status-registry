@@ -5,14 +5,16 @@ const login = async (email, password) => {
         console.log(email, password)
        const res = await axios({
             method: 'POST',
-            url: 'http://127.0.0.1:3000/api/users/login',
+            url: 'http://localhost:3000/api/users/login',
             data: {
                 email,
                 password
             }
 
         })
-
+        window.setTimeout(()=>{
+                location.assign('/dashboard')
+            }, 1000)
         console.log(res);
     } catch (err) {
         console.log(err.response.data);
