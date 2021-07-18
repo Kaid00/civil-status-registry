@@ -16,6 +16,9 @@ router.get('/marriage',authController.protect, viewController.marriage)
 router.get('/upload',authController.protect, viewController.upload)
 router.get('/login', viewController.login)
 
+router.get('/generate-birth-certificate',authController.protect, viewController.generateBirth )
+
+
 
 
 
