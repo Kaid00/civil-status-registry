@@ -41,10 +41,10 @@ const app = express();
 
 // CSP 
 app.use((req, res, next) => {
-  console.log('this was called')
+ 
   res.setHeader(
     'Content-Security-Policy-Report-Only',
-    "default-src 'self' http://127.0.0.1:3000/api/users/login; font-src 'self' https:; img-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; connect-src http://localhost:3000;"
+    "default-src 'self' http://127.0.0.1:3000/api/users/login; font-src 'self' https:; img-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https:; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; connect-src http://localhost:3000; frame-src 'self' http://localhost:3000"
   )
   next();
 })
