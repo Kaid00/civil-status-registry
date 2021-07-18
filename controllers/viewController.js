@@ -155,10 +155,12 @@ exports.getpuppet = async (req, res, next) => {
 
 exports.sendPdf = (req, res) => {
     let options = {
-      root: path.join(__dirname)
+      root: path.join(__dirname, '..')
   };
+ 
     
   let fileName = 'pdf1.pdf';
+  
   res.sendFile(fileName, options, function (err) {
       if (err) {
           console.log(err)
