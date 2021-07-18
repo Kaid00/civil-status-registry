@@ -1,12 +1,33 @@
+const births = require('../models/birthModel')
+const marriages = require('../models/marriageModel')
 
+exports.dashboard =  async(req, res) => {
+  try {
+    const birth  = await births.find()
+    const marriage  = await marriages.find();
+    const last = await birth[birth.length-1];
+    console.log(last);
 
-exports.dashboard =  (req, res) => {
- 
+    const total = birth.length + marriage.length;
+    const birthPercentage = (birth.length / total) * 100;
+    const marriagePercentage = (marriage.length / total) * 100;
+
 
     res.status(200).render('dashboard', {
       title: 'Dashboard',
-      
+      birth,
+      marriage,
+      marriagePercentage,
+      birthPercentage
     })
+  } catch(err) {
+    res.status(200).res.json({
+      status: 'Failed',
+      message: err
+    })
+  }
+
+ 
 
 }
 
@@ -40,5 +61,23 @@ exports.login = (req, res) => {
     });
 
 }
+
+exports.generateBirth = async (req, res) => {
+  try {
+    const birthData  = await births.find()
+    const birth = await birthData[birthData.length-1];
+
+
+    res.status(200).render('certificate_birth', {
+    title: 'Generated Birth Certificate',
+    birth
+  })
+  } catch {
+
+  }
+
+}
+
+
 
 
