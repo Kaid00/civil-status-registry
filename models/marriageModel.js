@@ -178,7 +178,7 @@ marriageSchema.virtual('groom_fullname').get(function () {
   return this.groom_given_name + ' ' + this.groom_surname;
 });
 
-marriageSchema.virtual('bride').get(function () {
+marriageSchema.virtual('bride_fullname').get(function () {
   return this.bride_given_name + ' ' + this.bride_surname;
 });
 module.exports = mongoose.model('Marriage', marriageSchema);
