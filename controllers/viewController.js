@@ -2,13 +2,14 @@ const births = require('../models/birthModel')
 const marriages = require('../models/marriageModel')
 const puppeteer = require('puppeteer');
 
+// Renders the dashboard view
 exports.dashboard =  async(req, res) => {
   try {
     const birth  = await births.find()
     const marriage  = await marriages.find();
-    const last = await birth[birth.length-1];
+    
    
-
+    // caculations for the statistics page
     const total = birth.length + marriage.length;
     const birthPercentage = ((birth.length / total) * 100).toFixed(1);
     const marriagePercentage = ((marriage.length / total) * 100).toFixed(1);
@@ -32,30 +33,35 @@ exports.dashboard =  async(req, res) => {
 
 }
 
+// Renders the create birth view
 exports.birth =  (req, res) => {
     res.status(200).render('birth', {
       title: 'Birth'
     }) 
   }
 
+  // Renders the create marriage view
 exports.marriage = (req, res) => {
     res.status(200).render('marriage', {
       title: 'Marriage'
     })
   }
 
+  // Renders the upload view
 exports.upload = (req, res) => {
     res.status(200).render('upload', {
       title: 'CSV'
     })
   }
 
+  // Renders the home view 
 exports.home = (req, res) => {
   res.status(200).render('home', {
           title: 'CRS' 
       });
 }
 
+  // Renders the login view
 exports.login = (req, res) => {
     res.status(200).render('login', {
         title: 'Login',
@@ -63,6 +69,7 @@ exports.login = (req, res) => {
 
 }
 
+// Renders a birth certificate in the dashboard 
 exports.generateBirth = async (req, res, next) => {
   try {
     const birthData  = await births.find()
@@ -85,6 +92,7 @@ exports.generateBirth = async (req, res, next) => {
 
 }
 
+// Generates the template used by the getpuppet function to generate the pdf
 exports.generateBirthPrint = async (req, res, next) => {
   try {
     const birthData  = await births.find()
@@ -107,16 +115,17 @@ exports.generateBirthPrint = async (req, res, next) => {
 
 }
 
-
+// Generate Pdf from the url
 exports.getpuppet = async (req, res, next) => {
   try {
+
     const url = 'http://localhost:3000/print-ready';
     const browser = await puppeteer.launch()
     
     const page = await browser.newPage();
     await page.goto(url);
-    //  await page.setContent(contenthtml)
 
+    // path points to the root of the project directory: fixed later
     await page.pdf({path: "pdf1.pdf", format: "A3"});
     await browser.close();
     res.status(200).json({
