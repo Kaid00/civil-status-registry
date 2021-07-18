@@ -7,6 +7,31 @@ const marriageSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
+    groom_profession: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    groom_nationality: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    groom_born_on: {
+      type: Date,
+      required: true,
+      trim: true,
+    },
+    groom_born_at: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    groom_resident_at: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     groom_surname: {
       type: String,
       required: true,
@@ -18,12 +43,44 @@ const marriageSchema = mongoose.Schema(
       trim: true,
       required: true
     },
+    groom_family_head: {
+      type: String,
+      trim: true,
+      required: true
+    },
+    groom_witness_name: {
+      type: String,
+      trim: true,
+      required: true
+    },
     groom_mother_name: {
       type: String,
       trim: true,
       required: true
     },
+    groom_place_birth: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    groom_reference_doc: {
+      type: Number,
+      required: true,
+      trim: true,
+      unique: true,
+    },
+
     bride_father_name: {
+      type: String,
+      trim: true,
+      required: true
+    },
+    bride_family_head: {
+      type: String,
+      trim: true,
+      required: true
+    },
+    bride_witness_name: {
       type: String,
       trim: true,
       required: true
@@ -33,31 +90,38 @@ const marriageSchema = mongoose.Schema(
       trim: true,
       required: true
     },
-    groom_date_birth: {
-      type: Date,
-      required: true,
-    },
-    bride_date_birth: {
-      type: Date,
-      required: true,
-    },
-    groom_place_birth: {
+    bride_profession: {
       type: String,
       required: true,
       trim: true,
     },
-    groom_id_num: {
-      type: Number,
+    bride_nationality: {
+      type: String,
       required: true,
       trim: true,
-      unique: true,
     },
+    bride_born_on: {
+      type: Date,
+      required: true,
+      trim: true,
+    },
+    bride_born_at: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    bride_resident_at: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    
     bride_place_birth: {
       type: String,
       required: true,
       trim: true,
     },
-    bride_id_num: {
+    bride_reference_doc: {
       type: Number,
       required: true,
       trim: true,
@@ -73,13 +137,34 @@ const marriageSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
-    date_of_marriage: {
-      type: Date,
-      required: true,
-    },
-    place_of_marriage: {
+    matrimonial_regime: {
       type: String,
       required: true,
+      enum: {
+        values: ['Separate', 'Joint'],
+        message: 'Matrimonial regime is either Separate or Joint ',
+      },
+    },
+    marriage_type: {
+      type: String,
+      required: true,
+      enum: {
+        values: ['Polygamy', 'Monogamy'],
+        message: 'Marriage type is either Polygamy or Monogamy ',
+      },
+    },
+    objections: {
+      type: String,
+      required: true,
+      enum: {
+        values: ['Yes', 'No'],
+        message: 'Objections is either Separate or No ',
+      },
+    },
+    drawn_up_on: {
+      type: Date,
+      required: true,
+      default: Date.now(),
     },
   },
   {
@@ -88,7 +173,12 @@ const marriageSchema = mongoose.Schema(
   }
 );
 
-marriageSchema.virtual('groom_age', function () {
-  return Date.now().getFullYear - this.groom_date_birth;
+
+marriageSchema.virtual('groom_fullname').get(function () {
+  return this.groom_given_name + ' ' + this.groom_surname;
+});
+
+marriageSchema.virtual('bride').get(function () {
+  return this.bride_given_name + ' ' + this.bride_surname;
 });
 module.exports = mongoose.model('Marriage', marriageSchema);
