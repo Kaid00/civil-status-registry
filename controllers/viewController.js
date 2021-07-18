@@ -93,7 +93,7 @@ exports.generateBirth = async (req, res, next) => {
 
 }
 
-// Generates the template used by the getpuppet function to generate the pdf
+// Generates the print-ready template used by the getpuppet function to generate the pdf
 exports.generateBirthPrint = async (req, res, next) => {
   try {
     const birthData  = await births.find()
@@ -116,7 +116,7 @@ exports.generateBirthPrint = async (req, res, next) => {
 
 }
 
-// Generate Pdf from the url
+// Generate Pdf from a print-ready copy of certificate using puppeteer
 exports.getpuppet = async (req, res, next) => {
   try {
 
@@ -146,13 +146,37 @@ exports.getpuppet = async (req, res, next) => {
 }
 
 
-// exports.test = (req, res) => {
-//   res.status(200).render('test', {
-//       title: 'test',
-//   });
+exports.generateMarriagePrint = async (req, res, next) => {
+  try {
+    const marriageData  = await marriages.find();
+    const marriage = await marriageData[marriageData.length-1];
 
-// }
+    console.log(marriage)
 
+    res.status(200).render('print_ready_marriage', {
+    title: 'Generated Marriage Certificate',
+    marriage
+  })
+
+  next()
+  } catch(err) {
+    res.status(400).json({
+      status: 'Failed'
+    })
+
+    next()
+  }
+}
+
+exports.test = (req, res) => {
+  res.status(200).render('print_ready_marriage', {
+      title: 'Print ready',
+  });
+
+}
+
+
+// Sends PDf to the browser for downloads
 exports.sendPdf = (req, res) => {
     let options = {
       root: path.join(__dirname, '..')
