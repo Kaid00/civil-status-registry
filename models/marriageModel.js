@@ -11,22 +11,27 @@ const marriageSchema = mongoose.Schema(
       type: String,
       required: true,
       trim: true,
+      
     },
     groom_father_name: {
       type: String,
       trim: true,
+      required: true
     },
     groom_mother_name: {
       type: String,
       trim: true,
+      required: true
     },
     bride_father_name: {
       type: String,
       trim: true,
+      required: true
     },
     bride_mother_name: {
       type: String,
       trim: true,
+      required: true
     },
     groom_date_birth: {
       type: Date,
