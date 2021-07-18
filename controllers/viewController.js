@@ -1,6 +1,7 @@
 const births = require('../models/birthModel')
 const marriages = require('../models/marriageModel')
 const puppeteer = require('puppeteer');
+const path = require('path');
 
 // Renders the dashboard view
 exports.dashboard =  async(req, res) => {
@@ -143,6 +144,32 @@ exports.getpuppet = async (req, res, next) => {
     return next()
   }
 }
+
+
+// exports.test = (req, res) => {
+//   res.status(200).render('test', {
+//       title: 'test',
+//   });
+
+// }
+
+exports.sendPdf = (req, res) => {
+    let options = {
+      root: path.join(__dirname)
+  };
+    
+  let fileName = 'pdf1.pdf';
+  res.sendFile(fileName, options, function (err) {
+      if (err) {
+          console.log(err)
+      } else {
+          console.log('Sent:', fileName);
+      }
+  });
+
+}
+
+
 
 
 
