@@ -23,6 +23,9 @@ const userSchema = mongoose.Schema({
       message: '{VALUE} is not supported',
     },
   },
+  photo: {
+    type: String
+  },
   password: {
     type: String,
     required: [true, 'Please provide a password'],
