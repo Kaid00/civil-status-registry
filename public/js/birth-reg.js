@@ -1,9 +1,13 @@
 
 
 // Elements
-const btn = document.getElementById('next1');
+const btn = document.getElementById('btnbig');
 const form = document.getElementById('birth-form');
+const print = document.getElementById('print')
 
+// btn.addEventListener('click', ()=>{
+//     printJS('/public/birth-certificates/pdf1.pdf')
+// })
 // Delegation
 
 
@@ -23,7 +27,24 @@ const createBirth = async (givenname, born_at, born_on, surname, sex, father_bor
         console.log(res);
 
         if (res.data.status === 'Success') {
-            
+             (async( ) => {
+                try{
+                    const createPdf =  await axios({
+                            method: 'GET',
+                            url: 'http://localhost:3000/createpdf'
+                        })  
+
+                    console.log(createPdf);
+                } catch(err) {
+                    console.log(err)
+                } 
+
+                if (createPdf.data.status === 'success') {
+                    printJs('form', 'html')
+                }
+            })();
+           
+          
             alert('Successful')
             // window.setTimeout(()=>{
             //     location.assign('/dashboard')
