@@ -1,4 +1,5 @@
 var chart = document.querySelector('#chartline')
+if (chart) {
 var options = {
     series: [{
         name: 'BIRTH',
@@ -56,3 +57,4 @@ var options = {
 };
 var chart = new ApexCharts(chart, options);
 chart.render();
+}
