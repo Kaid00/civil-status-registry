@@ -39,6 +39,7 @@ exports.signup = async (req, res) => {
       password_cfrm: req.body.password_cfrm,
       passwordChangedAt: req.body.passwordChangedAt,
       role: req.body.role,
+      photo: req.body.photo
     });
 
     createSendToken(newUser, 201, res);
@@ -149,6 +150,7 @@ exports.isLoggedIn = async (req, res, next) => {
       // There is a logged in user
       // Passing the user using the res.locals grants access to the user in all PUG templates 
       res.locals.user = currentUser;
+    
       
 
       return next();
