@@ -22,7 +22,7 @@ head
         
         .flex.justify-center
           div
-            img.h-24.w-24.rounded-full.object-cover.mr-2.border-4.border-green-400(class='sm:block' src='images/profile.jpeg' alt='user-profile')
+            img.h-24.w-24.rounded-full.object-cover.mr-2.border-4.border-green-400(class='sm:block' src=`images/${user.photo}` alt='user-profile')
             p.font-bold.text-base.text-green-400.pt-2.text-center.w-24=user.name
         div
           ul.mt-6.leading-10
@@ -158,6 +158,6 @@ head
     
 
 script(src='js/apex.js')
-script(src='js/anim.js')
+script(src='js/animation.js')
 script(src='js/chartline.js')
 script(src='js/chartpie.js')
