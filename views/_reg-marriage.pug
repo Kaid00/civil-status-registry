@@ -2,7 +2,7 @@
   .grid.grid-cols-12.gap-6
     .grid.grid-cols-12.col-span-12.gap-6(class='xxl:col-span-9')
       .col-span-12.mt-8
-        .col-span-4.grid.w-full.justify-center.gap-6.mt-5
+        .col-span-5.grid.w-full.justify-center.gap-6.mt-5
           .w-full.p-10.bg-white.rounded-xl.z-10.shadow-lg(x-data="{ step: 'step1' }" class='sm:max-w-lg')
             .text-center.pb-8
               h2.mt-5.text-3xl.font-bold.text-gray-900
@@ -15,12 +15,12 @@
                     p.text-gray-100.text-sm.font-semibold 1
                   p Couples 
                 .flex.space-x-2.w-full.items-center
-                  .flex.border-2.border-green-400.rounded-full.p-1.w-7.h-7.justify-center.items-center(:class="{' bg-green-400 ' : step === 'step2'}")
-                    p.text-gray-800.text-sm.font-semibold 2
+                  .flex.bg-green-400.rounded-full.p-1.w-7.h-7.justify-center.items-center(:class="{' bg-green-400 ' : step === 'step2'}")
+                    p.text-gray-100.text-sm.font-semibold 2
                   p Parents 
                 .flex.space-x-2.w-full.items-center
-                  .flex.border-2.border-green-400.rounded-full.p-1.w-7.h-7.justify-center.items-center
-                    p.text-gray-800.text-sm.font-semibold 3
+                  .flex.bg-green-400.rounded-full.p-1.w-7.h-7.justify-center.items-center
+                    p.text-gray-100.text-sm.font-semibold 3
                   p Print 
             // GROOM DETAILS ========================
             div
@@ -44,7 +44,11 @@
                     .flex.items-center.justify-center
                       label(for='')
                         | ID Number
-                        input#groom_id_num.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='number' required)
+                        input#groom_reference_doc.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='number' required)
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | Nationality
+                        input#groom_nationality.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text' required)
                     .flex.items-center.justify-center
                       label(for='')
                         | Place of Birth
@@ -52,7 +56,24 @@
                     .flex.items-center.justify-center
                       label(for='')
                         | Date of Birth
-                        input#groom_date_birth.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='date' required)
+                        input#groom_born_on.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='date' required)
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | Resident At
+                        input#groom_resident_at.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text' required)
+                    
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | Profession
+                        input#groom_profession.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text' required)
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | Family head
+                        input#groom_family_head.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text' required)
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | Name of Grooms witness
+                        input#groom_witness_name.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text' required)
                 // BRIDE DETAILS ===================================
                 div
                   label.text-sm.font-semibold.text-gray-500
@@ -71,7 +92,11 @@
                     .flex.items-center.justify-center
                       label(for='')
                         | ID Number
-                        input#bride_id_num.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='number' required)
+                        input#bride_reference_doc.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='number' required)
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | Nationality
+                        input#bride_nationality.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text' required)
                     .flex.items-center.justify-center
                       label(for='')
                         | Place of Birth
@@ -79,18 +104,68 @@
                     .flex.items-center.justify-center
                       label(for='')
                         | Date of Birth
-                        input#bride_date_birth.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='date' required)
+                        input#bride_born_on.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='date' required)
+                    
+                    
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | Resident At
+                        input#bride_resident_at.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text' required)
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | Profession
+                        input#bride_profession.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text' required)
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | Family head
+                        input#bride_family_head.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text' required)
+                    .flex.items-center.justify-center
+                      label(for='')
+                        | Name of Brides witness
+                        input#bride_witness_name.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text' required)
+                div.my-4
+                  label.text-sm.font-semibold.text-gray-500
+                      | Marriage
+                      | details
+                      hr
+                  .grid.grid-cols-2.text-gray-800
+                    .flex.flex-col.my-4
+                      p
+                      | Matrimonial regime
+                      div.flex.flex-row.space-x-4.items-center
+                        input#Separate.form-radio.text-green-400(class='text-green-400' type='radio' value='Separate' name='regime')
+                        label(for='Separate') Separate
+                        input#Joint.form-radio.text-green-400(class='' type='radio' value='Joint' name='regime')
+                        label(for='Joint') Joint
+                    .flex.flex-col.my-4
+                      p
+                      | Marriage type
+                      div.flex.flex-row.space-x-4.items-center
+                        input#Polygamy.form-radio.text-green-400(class='text-green-400' type='radio' value='Polygamy' name='type')
+                        label(for='Polygamy') Polygamy
+                        input#Monogamy.form-radio.text-green-400(class='' type='radio' value='Monogamy' name='type')
+                        label(for='Monogamy') Monogamy
+                    .flex.flex-col.my-4
+                      p
+                      | Any objections to this marriage?
+                      div.flex.flex-row.space-x-4.items-center
+                        input#Yes.form-radio.text-green-400(class='text-green-400' type='radio' value='Yes' name='objections')
+                        label(for='Yes') Yes
+                        input#none.form-radio.text-green-400(class='' type='radio' value='No' name='objections')
+                        label(for='none') No
                 //- .flex.justify-center.p-6
                 //-   #prev0.my-5.w-32.flex.justify-center.bg-green-500.text-gray-100.p-4.rounded-2xl.tracking-wide.font-semibold.shadow-lg.cursor-pointer.transition.ease-in.duration-300(@click=' isOpen = !isOpen' type='submit' class='focus:outline-none focus:shadow-outline hover:bg-green-600')
                 //-     | Next
                 // PARENT FORM ===================================
                 div.mt-8.space-y-8(action='#' method='POST')
+                    
                   div
                     label.text-sm.font-semibold.text-gray-500
                       | Grooms Parents
                       | details
                     hr
                   .grid.grid-cols-2.space-y-3.gap-4.text-gray-800
+                    
                     .grid.items-center.col-span-2
                       label(for='')
                         | Groom fathers name
@@ -113,16 +188,9 @@
                       label(for='')
                         | Bride mothers Name
                         input#bride_mother_name.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text' required)
-                    .grid.items-center.col-span-2
-                      label(for='')
-                        | Place of marriage
-                        input#place_of_marriage.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='text' required)
-                    .grid.items-center.col-span-2
-                      label(for='')
-                        | Date of marriage
-                        input#date_of_marriage.w-full.shadow-md.bg-gray-200.rounded-xl.px-3.py-2(class='focus:outline-none focus:ring focus:ring-green-400' type='date' required)
-                  .flex.justify-between.p-6.mx-auto
-                    button#marbtn.my-5.w-32.flex.justify-center.bg-green-500.text-gray-100.p-4.rounded-2xl.tracking-wide.font-semibold.shadow-lg.cursor-pointer.transition.ease-in.duration-300(type='submit' class='focus:outline-none focus:shadow-outline hover:bg-green-600')
-                      | Submit
+                    
+                .flex.flex-rows.justify-center.p-6
+                  button#next1.my-5.w-32.flex.justify-center.bg-green-500.text-gray-100.p-4.rounded-2xl.tracking-wide.font-semibold.shadow-xl.cursor-pointer.transition.ease-in.duration-300(type='submit' class='focus:outline-none focus:shadow-outline hover:bg-green-400')
+                    | Submit
 script(src='js/marriage-reg.js')
 script(src='js/axios.min.map.js')
