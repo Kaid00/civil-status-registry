@@ -22,11 +22,6 @@ const marriageSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
-    groom_born_at: {
-      type: String,
-      required: true,
-      trim: true,
-    },
     groom_resident_at: {
       type: String,
       required: true,
@@ -63,7 +58,7 @@ const marriageSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
-    groom_reference_doc: {
+    groom_id_num: {
       type: Number,
       required: true,
       trim: true,
@@ -105,11 +100,6 @@ const marriageSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
-    bride_born_at: {
-      type: String,
-      required: true,
-      trim: true,
-    },
     bride_resident_at: {
       type: String,
       required: true,
@@ -121,7 +111,7 @@ const marriageSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
-    bride_reference_doc: {
+    bride_id_num: {
       type: Number,
       required: true,
       trim: true,
