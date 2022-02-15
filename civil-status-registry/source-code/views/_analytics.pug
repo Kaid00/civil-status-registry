@@ -1,0 +1,34 @@
+main
+  .grid.mb-4.pb-10.px-8.mx-4.rounded-3xl.bg-gray-100.border-4.border-green-400
+    .grid.grid-cols-12.gap-6
+      .grid.grid-cols-12.col-span-12.gap-6(class='xxl:col-span-9')
+        .col-span-12.mt-8
+          .flex.items-center.h-10.intro-y
+            h2.mr-5.text-lg.font-medium.truncate Dashboard
+          .grid.grid-cols-6.gap-6.mt-5
+            a.transform.transition.duration-300.shadow-xl.rounded-lg.col-span-12.intro-y.bg-white(class='hover:scale-105 sm:col-span-6 xl:col-span-3' href='/')
+              .p-5
+                .flex.justify-between
+                  svg.w-7.h-7.text-green-500(fill='currentColor' viewbox='0 0 20 20' xmlns='http://www.w3.org/2000/svg')
+                    path(fill-rule='evenodd' d='M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z' clip-rule='evenodd')
+                  .bg-green-500.rounded-full.h-6.px-2.flex.justify-items-center.text-white.font-semibold.text-sm
+                    span.flex.items-center #{marriagePercentage}% 
+                .ml-2.w-full.flex-1
+                  div
+                    .mt-3.text-3xl.font-bold.leading-8=marriage.length
+                    .mt-1.text-base.text-gray-600 Marriage Certificates
+            a.transform.transition.duration-300.shadow-xl.rounded-lg.col-span-12.intro-y.bg-white(class='hover:scale-105 sm:col-span-6 xl:col-span-3' href='#')
+              .p-5
+                .flex.justify-between
+                  svg.h-7.w-7.text-blue-400(fill='currentColor' viewbox='0 0 20 20' xmlns='http://www.w3.org/2000/svg')
+                    path(d='M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z')
+                  .bg-blue-400.rounded-full.h-6.px-2.flex.justify-items-center.text-white.font-semibold.text-sm
+                    span.flex.items-center #{birthPercentage}%
+                .ml-2.w-full.flex-1
+                  div
+                    .mt-3.text-3xl.font-bold.leading-8=birth.length
+                    .mt-1.text-base.text-gray-600 Birth Certificates
+        .col-span-12.mt-5
+          .grid.gap-2.grid-cols-1(class='lg:grid-cols-2')
+            #chartline.bg-white.shadow-lg.p-4
+            #chartpie.bg-white.shadow-lg

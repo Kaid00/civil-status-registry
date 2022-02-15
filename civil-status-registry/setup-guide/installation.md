@@ -1,0 +1,16 @@
+- Download and install Node js
+    - Windows 
+        - (64-bit installer)[https://nodejs.org/dist/v14.17.3/node-v14.17.3-x64.msi]
+        - (32-bit installer)[https://nodejs.org/dist/v14.17.3/node-v14.17.3-x86.msi]
+    - Mac OS
+        - (Installer)[https://nodejs.org/dist/v14.17.3/node-v14.17.3.pkg]
+    - Linux
+        - (Installer)[https://nodejs.org/dist/v14.17.3/node-v14.17.3-linux-x64.tar.xz]
+- Open a terminal window
+    - Windows ** Ctrl + Shift + T **
+    - Mac OS ** Control + Option + Shift + T **
+    - Ubuntu ** Ctrl + Alt + T **
+- In your terminal window navigate to the source-code folder
+- In the folder run the command * npm install * to install the projects dependencies 
+- When the project dependencies have been installed run the comman * npm start * to initialize the database and the server 
+- In your browser run the URL * localhost:3000/ * this URL points to the applications home page, from where you can proceed to login into the application

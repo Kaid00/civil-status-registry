@@ -27,28 +27,36 @@ const createBirth = async (givenname, born_at, born_on, surname, sex, father_bor
         console.log(res);
 
         if (res.data.status === 'Success') {
+
+            // request envokes puppeteer to  generated the  pdf 
              (async( ) => {
                 try{
                     const createPdf =  await axios({
                             method: 'GET',
-                            url: 'http://localhost:3000/createpdf'
+                            url: 'http://localhost:3000/create-birth-pdf'
                         })  
+                    
+                        console.log(createPdf);
+                    if (createPdf.data.status === 'success') {
 
-                    console.log(createPdf);
+                        alert('Birth Registered Successful, redirecting to print page')
+                        
+            window.setTimeout(()=>{
+                location.assign('/generate-birth-certificate')
+            }, 1000);
+
+                    }
+                    
                 } catch(err) {
                     console.log(err)
                 } 
 
-                if (createPdf.data.status === 'success') {
-                    printJs('form', 'html')
-                }
+               
             })();
-           
+
+            
           
-            alert('Successful')
-            // window.setTimeout(()=>{
-            //     location.assign('/dashboard')
-            // }, 1000)
+           
         }
     } catch (err) {
        console.log(err.response.data);

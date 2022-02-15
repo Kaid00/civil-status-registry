@@ -24,10 +24,30 @@ const createMarriage = async (groom_given_name, groom_surname, groom_id_num, gro
 
         if (res.data.status === 'success') {
             
-            alert('Marriage Registered Successfully')
-            // window.setTimeout(()=>{
-            //     location.assign('/dashboard')
-            // }, 1000)
+            (async( ) => {
+                try{
+                    const createPdf =  await axios({
+                            method: 'GET',
+                            url: 'http://localhost:3000/create-marriage-pdf'
+                        })  
+                    
+                        
+                    if (createPdf.data.status === 'success') {
+
+                        alert('Marriage Registered Successful, redirecting to print page')
+                                    
+                        window.setTimeout(()=>{
+                            location.assign('/generate-marriage-certificate')
+                        }, 1000);
+
+                    }
+                    
+                } catch(err) {
+                    console.log(err)
+                } 
+
+               
+            })();
         }
     } catch (err) {
        console.log(err.response.data);

@@ -1,0 +1,231 @@
+doctype html
+head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Document
+    link(rel='icon' href='images/Favicon.png' type='image/png')
+    link(rel='stylesheet' href='styles/tailwind.css')
+.flex.flex-col.h-screen.mx-auto(class='w-5/6')
+    .grid.grid-cols-3.justify-between.items-center.space-x-2.h-64
+        .flex.flex-col.h-full.items-center.p-6.text-l.space-y-2
+            .flex.flex-col.items-center
+                p PROVINCE
+                .border-b-4.border-dotted.border-gray-800.px-2
+                    p.text-3xl North West
+            .flex.flex-col.items-center
+                p DEPARTMENT
+                .border-b-4.border-dotted.border-gray-800.px-10
+                    p.text-3xl Mezam
+            .flex.flex-col.items-center
+                p SUBDIVISION
+                .border-b-4.border-dotted.border-gray-800.px-12
+                    p.text-3xl Santa
+        .flex.flex-col.items-center.h-full.p-6.text-xl
+            .flex.flex-col.items-center
+                p.uppercase.font-semibold Republic of Cameroon
+                p Peace - Work - Fatherland
+        .flex.flex-col.h-full.items-center.p-6.text-l.space-y-2
+            .flex.flex-col.items-center
+                p PROVINCE
+                .border-b-4.border-dotted.border-gray-800.px-2
+                    p.text-3xl North West
+            .flex.flex-col.items-center
+                p DEPARTMENT
+                .border-b-4.border-dotted.border-gray-800.px-10
+                    p.text-3xl Mezam
+            .flex.flex-col.items-center
+                p SUBDIVISION
+                .border-b-4.border-dotted.border-gray-800.px-12
+                    p.text-3xl Santa
+    .space-y-8.pb-8
+        .flex.flex-col.items-center.space-y-2
+            h3.text-xl.font-semibold CIVIL STATUS REGISTRATION CENTRE
+            p
+                | of 
+                span.pl-4.text-3xl.border-b-4.border-dotted.border-gray-800 Santa Rurul Council
+        .flex.flex-row.justify-center.space-x-2
+            div
+                h3.text-2xl.font-medium Main Civil status registry of Attachment(For secondary civil registry)
+            p
+                span.pl-8.text-3xl.border-b-4.border-dotted.border-gray-800 Santa Rural Council
+        .flex.flex-col.items-center.space-x-12
+            .text-3xl
+                h2.font-semibold MARRIAGE CERTIFICATE
+            div
+                p
+                    | No 
+                    span.pl-4.border-b-4.border-dotted.border-gray-800.text-2xl 786/98
+    .grid.grid-cols-1.space-y-4.justify-center.pb-8
+        .ml-44.flex.flex-row.space-x-6.h-8.p-6.text-l.text-xl
+            p.font-semibold Marriage of
+            .text-3xl.flex.flex-col.justify-end.h-8.border-dotted.border-b-4.border-gray-800.px-96
+                p #{marriage.groom_fullname}
+        .ml-44.flex.flex-row.space-x-20.h-8.p-6.text-l.text-xl
+            p.font-semibold And of
+            .text-3xl.flex.flex-col.justify-end.h-8.border-dotted.border-b-4.border-gray-800.px-96
+                p #{marriage.bride_fullname}
+        .ml-44.flex.flex-row.space-x-20.h-8.p-6.text-l.text-xl
+            p.font-semibold On the
+            .text-3xl.flex.flex-col.justify-end.h-8.border-dotted.border-b-4.border-gray-800.py-2.px-96
+                p=marriage.drawn_up_on.toLocaleDateString()
+        p.ml-40.text-xl.py-4.px-8 Before us appeared publicly
+        // groom
+        .ml-44.flex.flex-row.space-x-6.h-8.pt-8.p-6.text-l.text-xl
+            p.font-semibold Mr
+            .text-3xl.flex.flex-col.justify-end.h-8.border-dotted.border-b-4.border-gray-800.px-96
+                p=marriage.groom_fullname
+        .ml-44.flex.grid-cols-2.space-x-6.h-8.p-6.text-l.text-xl
+            .flex.flex-rows
+                p.font-semibold Born on the
+                .text-3xl.flex.flex-col.items-center.h-10.border-dotted.border-b-4.border-gray-800.px-32
+                    p=marriage.groom_born_on.toLocaleDateString()
+            .flex
+                p.font-semibold At
+                .text-3xl.flex.flex-col.items-center.h-10.border-dotted.border-b-4.border-gray-800.px-32
+                    p=marriage.groom_place_birth
+        .ml-44.flex.flex-row.space-x-6.h-8.p-6.text-l.text-xl
+            p.font-semibold Profession
+            .text-3xl.flex.flex-col.justify-end.h-8.border-dotted.border-b-4.border-gray-800.px-96
+                p=marriage.groom_profession
+        .ml-44.flex.flex-row.space-x-6.h-8.p-6.text-l.text-xl
+            p.font-semibold Nationality
+            .text-3xl.flex.flex-col.justify-end.h-8.border-dotted.border-b-4.border-gray-800.px-96
+                p=marriage.groom_nationality
+        .ml-44.flex.flex-row.space-x-6.h-8.p-6.text-l.text-xl
+            p.font-semibold Reference document
+            .text-3xl.flex.flex-col.justify-end.h-8.border-dotted.border-b-4.border-gray-800.px-96
+                p=marriage.groom_reference_doc
+        p.ml-40.text-xl.px-8
+            | (National identity card number or Referencs of the Birth Certificate or References of the document attesting the nationality)
+        .ml-44.flex.flex-row.space-x-6.h-8.p-6.text-l.text-xl
+            p.font-semibold Resident At
+            .text-3xl.flex.flex-col.justify-end.h-8.border-dotted.border-b-4.border-gray-800.px-96
+                p=marriage.groom_resident_at
+        .ml-44.flex.grid-cols-2.space-x-6.h-8.p-6.text-l.text-xl
+            .flex.flex-rows
+                p.font-semibold Son of
+                .text-3xl.flex.flex-col.items-center.h-10.border-dotted.border-b-4.border-gray-800.px-32
+                    p=marriage.groom_father_name
+            .flex
+                p.font-semibold and of
+                .text-3xl.flex.flex-col.items-center.h-10.border-dotted.border-b-4.border-gray-800.px-32
+                    p=marriage.groom_mother_name
+        // Bride
+        .ml-44.flex.flex-row.space-x-6.h-8.p-6.text-l.text-xl
+            p.font-semibold Mrs
+            .text-3xl.flex.flex-col.justify-end.h-8.border-dotted.border-b-4.border-gray-800.px-96
+                p=marriage.bride_fullname
+        .ml-44.flex.grid-cols-2.space-x-6.h-8.p-6.text-l.text-xl
+            .flex.flex-rows
+                p.font-semibold Born on the
+                .text-3xl.flex.flex-col.items-center.h-10.border-dotted.border-b-4.border-gray-800.px-32
+                    p=marriage.bride_born_on.toLocaleDateString()
+            .flex
+                p.font-semibold At
+                .text-3xl.flex.flex-col.items-center.h-10.border-dotted.border-b-4.border-gray-800.px-32
+                    p=marriage.bride_place_birth
+        .ml-44.flex.flex-row.space-x-6.h-8.p-6.text-l.text-xl
+            p.font-semibold Profession
+            .text-3xl.flex.flex-col.justify-end.h-8.border-dotted.border-b-4.border-gray-800.px-96
+                p=marriage.bride_profession
+        .ml-44.flex.flex-row.space-x-6.h-8.p-6.text-l.text-xl
+            p.font-semibold Nationality
+            .text-3xl.flex.flex-col.justify-end.h-8.border-dotted.border-b-4.border-gray-800.px-96
+                p=marriage.bride_nationality
+        .ml-44.flex.flex-row.space-x-6.h-8.p-6.text-l.text-xl
+            p.font-semibold Reference document
+            .text-3xl.flex.flex-col.justify-end.h-8.border-dotted.border-b-4.border-gray-800.px-96
+                p=marriage.bride_reference_doc
+        p.ml-40.text-xl.px-8
+            | (National identity card number or Referencs of the Birth Certificate or References of the document attesting the nationality)
+        .ml-44.flex.flex-row.space-x-6.h-8.p-6.text-l.text-xl
+            p.font-semibold Resident At
+            .text-3xl.flex.flex-col.justify-end.h-8.border-dotted.border-b-4.border-gray-800.px-96
+                p=marriage.bride_resident_at
+        .ml-44.flex.grid-cols-2.space-x-6.h-16.p-6.text-l.text-xl
+            .flex.flex-rows
+                p.font-semibold Daugther of
+                .text-3xl.h-10.border-dotted.border-b-4.border-gray-800.px-32
+                    p=marriage.bride_father_name
+            .flex
+                p.font-semibold and of
+                .text-3xl.flex.flex-col.items-center.h-10.border-dotted.border-b-4.border-gray-800.px-32
+                    p=marriage.bride_mother_name
+        .ml-44.flex.flex-col.space-y-2.h-16.pb-20.p-6.text-l.text-xl
+            p.font-medium.pb-4
+                | The bride and bridegroom state that the matrimonial regime is (separate or joint ownership of property)
+            .text-3xl.flex.flex-col.justify-end.h-10.border-dotted.mt-4.border-b-4.border-gray-800.py-2.px-96
+                p #{marriage.matrimonial_regime} ownership of property
+        .ml-44.flex.flex-row.space-x-16.h-10.p-6.text-l.text-xl
+            p.font-semibold.pb-8 Type of marriage(polygamy or monogamy)
+            .text-3xl.flex.flex-col.justify-end.h-8.border-dotted.border-b-4.border-gray-800.px-60
+                p=marriage.marriage_type
+        .ml-44.flex.flex-row.space-x-16.h-10.p-6.text-l.text-xl
+            p.font-semibold.pb-8 Any objections to this marriage
+            .text-3xl.flex.flex-col.justify-end.h-8.border-dotted.border-b-4.border-gray-800.px-60
+                p=marriage.objections
+        .ml-44.flex.grid-cols-2.space-x-6.h-16.p-6.text-l.text-xl
+            .flex.flex-rows
+                p.font-semibold Mr
+                .text-3xl.h-10.border-dotted.border-b-4.border-gray-800.px-32
+                    p=marriage.groom_fullname
+            .flex
+                p.font-semibold Miss
+                .text-3xl.flex.flex-col.items-center.h-10.border-dotted.border-b-4.border-gray-800.px-48
+                    p=marriage.bride_fullname
+        p.ml-40.text-xl.py-2.pb-2.px-8
+            | Both declared they wish to be husband and wife and in accordance with the law, we pronounce that they are united by the marriage
+        p.ml-40.text-xl.px-8 In the presence of
+        .ml-44.flex.grid-cols-2.space-x-6.h-16.p-6.text-l.text-xl
+            .flex.flex-rows
+                p.font-semibold Mr
+                .text-3xl.h-10.border-dotted.border-b-4.border-gray-800.px-80
+                    p=marriage.groom_family_head
+            .flex
+                p.font-semibold Head of the family of the husband
+        .ml-44.flex.grid-cols-2.space-x-6.h-16.p-6.text-l.text-xl
+            .flex.flex-rows
+                p.font-semibold and of Mr
+                .text-3xl.h-10.border-dotted.border-b-4.border-gray-800.px-80
+                    p=marriage.bride_family_head
+            .flex
+                p.font-semibold Head of the family of the wife
+        p.ml-40.text-2xl.py-4.px-8 Who agree to the marriage and of
+        .ml-44.flex.grid-cols-2.space-x-6.h-16.p-6.text-l.text-xl
+            .flex.flex-rows
+                p.font-semibold Mr
+                .text-3xl.h-10.border-dotted.border-b-4.border-gray-800.px-96
+                    p=marriage.groom_witness_name
+            .flex
+                p.font-semibold Witness of the husband
+        .ml-44.flex.grid-cols-2.space-x-6.h-16.p-6.text-l.text-xl
+            .flex.flex-rows
+                p.font-semibold and of Mr
+                .text-3xl.h-10.border-dotted.border-b-4.border-gray-800.px-96
+                    p=marriage.bride_witness_name
+            .flex
+                p.font-semibold Witness of the wife
+        .ml-44.flex.grid-cols-2.space-x-6.h-16.p-6.text-l.text-xl
+            .flex.flex-rows
+                p.font-semibold This certificate was drawn by us
+                .text-3xl.h-10.border-dotted.bg.border-b-4.border-gray-800.px-64
+                    p #{user.name}
+            .flex
+                p.font-semibold Civil Status Registrar
+        .ml-44.flex.grid-cols-2.space-x-6.h-16.p-6.text-l.text-xl
+            .flex.flex-rows
+                p.font-semibold In the presence of 
+                .text-3xl.h-10.border-dotted.border-b-4.border-gray-800.px-96
+                    p Pius Junior Khan
+            .flex
+                p.font-semibold Secretary
+        .ml-44.flex.grid-cols-2.space-x-6.h-8.pb-16.p-6.text-l.text-xl
+            .flex.flex-rows
+                p.font-semibold At
+                .text-3xl.flex.flex-col.items-center.h-10.border-dotted.border-b-4.border-gray-800.px-32
+                    p Buea Municipal Council
+            .flex
+                p.font-semibold on the
+                .text-3xl.flex.flex-col.items-center.h-10.border-dotted.border-b-4.border-gray-800.px-32
+                    p=marriage.drawn_up_on.toLocaleDateString()

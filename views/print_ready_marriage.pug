@@ -66,7 +66,7 @@ head
             .text-3xl.flex.flex-col.justify-end.h-8.border-dotted.border-b-4.border-gray-800.px-96
                 p #{marriage.bride_fullname}
         .ml-44.flex.flex-row.space-x-20.h-8.p-6.text-l.text-xl
-            p.font-semibold One the
+            p.font-semibold On the
             .text-3xl.flex.flex-col.justify-end.h-8.border-dotted.border-b-4.border-gray-800.py-2.px-96
                 p=marriage.drawn_up_on.toLocaleDateString()
         p.ml-40.text-xl.py-4.px-8 Before us appeared publicly
@@ -83,7 +83,7 @@ head
             .flex
                 p.font-semibold At
                 .text-3xl.flex.flex-col.items-center.h-10.border-dotted.border-b-4.border-gray-800.px-32
-                    p=marriage.groom_born_at
+                    p=marriage.groom_place_birth
         .ml-44.flex.flex-row.space-x-6.h-8.p-6.text-l.text-xl
             p.font-semibold Profession
             .text-3xl.flex.flex-col.justify-end.h-8.border-dotted.border-b-4.border-gray-800.px-96
@@ -124,7 +124,7 @@ head
             .flex
                 p.font-semibold At
                 .text-3xl.flex.flex-col.items-center.h-10.border-dotted.border-b-4.border-gray-800.px-32
-                    p=marriage.bride_born_at
+                    p=marriage.bride_place_birth
         .ml-44.flex.flex-row.space-x-6.h-8.p-6.text-l.text-xl
             p.font-semibold Profession
             .text-3xl.flex.flex-col.justify-end.h-8.border-dotted.border-b-4.border-gray-800.px-96
@@ -162,7 +162,7 @@ head
             .text-3xl.flex.flex-col.justify-end.h-8.border-dotted.border-b-4.border-gray-800.px-60
                 p=marriage.marriage_type
         .ml-44.flex.flex-row.space-x-16.h-10.p-6.text-l.text-xl
-            p.font-semibold.pb-8 No objections to marriage have been recorded
+            p.font-semibold.pb-8 Any objections to this marriage
             .text-3xl.flex.flex-col.justify-end.h-8.border-dotted.border-b-4.border-gray-800.px-60
                 p=marriage.objections
         .ml-44.flex.grid-cols-2.space-x-6.h-16.p-6.text-l.text-xl
@@ -210,7 +210,7 @@ head
             .flex.flex-rows
                 p.font-semibold This certificate was drawn by us
                 .text-3xl.h-10.border-dotted.bg.border-b-4.border-gray-800.px-64
-                    p=user.name
+                    p #{user.name}
             .flex
                 p.font-semibold Civil Status Registrar
         .ml-44.flex.grid-cols-2.space-x-6.h-16.p-6.text-l.text-xl

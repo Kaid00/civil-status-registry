@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
+    "warn": "node --trace-warnings ./bin/www",
     "devstart": "DEBUG=civil-registry:* npm run start"
   },
   "dependencies": {

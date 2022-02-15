@@ -117,7 +117,7 @@ exports.generateBirthPrint = async (req, res, next) => {
 }
 
 // Generate Pdf from a print-ready copy of certificate using puppeteer
-exports.getpuppet = async (req, res, next) => {
+exports.puppetBirth = async (req, res, next) => {
   try {
 
     const url = 'http://localhost:3000/print-ready';
@@ -127,7 +127,7 @@ exports.getpuppet = async (req, res, next) => {
     await page.goto(url);
 
     // path points to the root of the project directory: fixed later
-    await page.pdf({path: "pdf1.pdf", format: "A3"});
+    await page.pdf({path: "birth-certificate.pdf", format: "A3"});
     await browser.close();
     res.status(200).json({
       status: 'success',
@@ -146,14 +146,38 @@ exports.getpuppet = async (req, res, next) => {
 }
 
 
+
+// Renders a birth certificate in the dashboard 
+exports.generateMarriage = async (req, res, next) => {
+  try {
+    const marriageData  = await marriages.find();
+    const marriage = await marriageData[marriageData.length-1];
+
+    res.status(200).render('certificate_marriage', {
+    title: 'Generated Marriage Certificate',
+    marriage
+  })
+
+  next()
+  } catch(err) {
+    res.status(400).json({
+      status: 'Failed'
+    })
+
+    next()
+  }
+
+}
+
+// Sends the most recently created marriage certificate to the
 exports.generateMarriagePrint = async (req, res, next) => {
   try {
     const marriageData  = await marriages.find();
     const marriage = await marriageData[marriageData.length-1];
 
-    console.log(marriage)
+   
 
-    res.status(200).render('print_ready_marriage', {
+    res.status(200).render('print_marriage', {
     title: 'Generated Marriage Certificate',
     marriage
   })
@@ -168,30 +192,93 @@ exports.generateMarriagePrint = async (req, res, next) => {
   }
 }
 
-exports.test = (req, res) => {
-  res.status(200).render('print_ready_marriage', {
-      title: 'Print ready',
-  });
+exports.puppetMarriage = async (req, res, next) => {
+  try {
+
+    const url = 'http://localhost:3000/test';
+    const browser = await puppeteer.launch();
+    
+    const page = await browser.newPage();
+    await page.goto(url);
+
+    // path points to the root of the project directory: fixed later
+    await page.pdf({path: "marriage-certificate.pdf", format: "A2"});
+    await browser.close();
+    res.status(200).json({
+      status: 'success',
+      message: 'PDF saved'
+    })
+
+    return next()
+
+  } catch(err) {
+    res.status(400).json({
+      status: 'failed',
+      message: err
+    })
+    return next()
+  }
+}
+
+
+exports.test = async (req, res, next) => {
+  try {
+    const marriageData  = await marriages.find();
+    const marriage = await marriageData[marriageData.length-1];
+
+   
+
+    res.status(200).render('print_marriage', {
+    title: 'Generated Marriage Certificate',
+    marriage
+  })
+
+  next()
+  } catch(err) {
+    res.status(400).json({
+      status: 'Failed'
+    })
+
+    next()
+  }
 
 }
 
 
 // Sends PDf to the browser for downloads
-exports.sendPdf = (req, res) => {
+exports.sendBirthPdf = (req, res) => {
     let options = {
       root: path.join(__dirname, '..')
   };
  
     
-  let fileName = 'pdf1.pdf';
+  let fileName = 'birth-certificate.pdf';
   
-  res.sendFile(fileName, options, function (err) {
+  res.status(200).sendFile(fileName, options, function (err) {
       if (err) {
           console.log(err)
       } else {
           console.log('Sent:', fileName);
       }
   });
+
+}
+
+exports.sendMarriagePdf = (req, res) => {
+  let options = {
+    root: path.join(__dirname, '..')
+};
+
+  
+let fileName = 'marriage-certificate.pdf';
+
+res.status(200).sendFile(fileName, options, function (err) {
+    if (err) {
+        console.log(err)
+    } else {
+        console.log('Sent:', fileName);
+    }
+});
 
 }
 
